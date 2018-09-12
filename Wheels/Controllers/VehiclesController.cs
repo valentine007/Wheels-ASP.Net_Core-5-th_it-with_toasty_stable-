@@ -28,8 +28,6 @@ namespace Wheels.Controllers
 		[HttpPost]
 		public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
 		{
-			throw new Exception();
-
 			if (!ModelState.IsValid)
 				return BadRequest(ModelState);
 
@@ -95,6 +93,12 @@ namespace Wheels.Controllers
 			return Ok(vehicleResource);
 		}
 
+		[HttpGet]
+		public async Task<IEnumerable<VehicleResource>> GetVehicles()
+		{
+			var vehicles = await repository.GetVehicles();
 
+			return mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleResource>>(vehicles);
+		}
 	}
 }

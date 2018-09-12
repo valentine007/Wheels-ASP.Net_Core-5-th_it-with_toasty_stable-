@@ -14,5 +14,6 @@ namespace Wheels.Persistence
 
 		void Remove(Vehicle vehicle);
 
+		Task<IEnumerable<Vehicle>> GetVehicles();
 	}
 }
