@@ -2,30 +2,43 @@
 import { Vehicle, KeyValuePair } from '../../app/models/vehicle';
 import { VehicleService } from '../../../services/vehicle.service';
 @Component({
-	templateUrl: 'vehicle-list.html'
+  templateUrl: 'vehicle-list.html'
 })
 export class VehicleListComponent implements OnInit {
-	vehicles: Vehicle[];
-	makes: KeyValuePair[];
-	filter: any = {};
-	constructor(private vehicleService: VehicleService) { }
-	ngOnInit() {
-		this.vehicleService.getMakes()
-			.subscribe(makes => this.makes = makes);
+  vehicles: Vehicle[];
+  makes: KeyValuePair[];
+  query: any = {};
 
-		this.populateVehicles();
-	}
+  constructor(private vehicleService: VehicleService) { }
 
-	private populateVehicles() {
-		this.vehicleService.getVehicles(this.filter)
-			.subscribe(vehicles => this.vehicles = vehicles);
-	}
+  ngOnInit() { 
+    this.vehicleService.getMakes()
+      .subscribe(makes => this.makes = makes);
 
-	onFilterChange() {
-		this.populateVehicles();
-	}
-	resetFilter() {
-		this.filter = {};
-		this.onFilterChange();
-	}
+    this.populateVehicles();
+  }
+
+  private populateVehicles() {
+    this.vehicleService.getVehicles(this.query)
+      .subscribe(vehicles => this.vehicles = vehicles);
+  }
+
+  onFilterChange() {
+    this.populateVehicles();
+  }
+
+  resetFilter() {
+    this.query = {};
+    this.onFilterChange();
+  }
+
+  sortBy(columnName) {
+    if (this.query.sortBy === columnName) {
+      this.query.isSortAscending = false; 
+    } else {
+      this.query.sortBy = columnName;
+      this.query.isSortAscending = true;
+    }
+    this.populateVehicles();
+  }
 }
