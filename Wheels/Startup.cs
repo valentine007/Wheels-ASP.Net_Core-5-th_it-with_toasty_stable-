@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wheels.Persistence;
+using Wheels.Core.Models;
 
 namespace Wheels
 {
@@ -25,12 +26,10 @@ namespace Wheels
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+			services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 			services.AddScoped<IVehicleRepository, VehicleRepository>();
-
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
-
 			services.AddAutoMapper();
-
 			services.AddDbContext<WheelsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.AddMvc();
