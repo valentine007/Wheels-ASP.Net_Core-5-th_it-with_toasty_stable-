@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Wheels.Core.Models;
 
 namespace Wheels.Models
 {
@@ -34,9 +35,13 @@ namespace Wheels.Models
 
 		public ICollection<VehicleFeature> Features { get; set; }
 
+		public ICollection<Photo> Photos { get; set; }
+
 		public Vehicle()
 		{
 			Features = new Collection<VehicleFeature>();
+
+			Photos = new Collection<Photo>();
 		}
 	}
 }

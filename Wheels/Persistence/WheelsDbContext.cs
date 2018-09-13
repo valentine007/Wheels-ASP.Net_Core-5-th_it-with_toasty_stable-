@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Wheels.Core.Models;
 using Wheels.Models;
 
 namespace Wheels.Persistence
@@ -13,6 +14,7 @@ namespace Wheels.Persistence
 		public DbSet<Make> Makes { get; set; }
 		public DbSet<Feature> Features { get; set; }
 		public DbSet<Model> Models { get; set; }
+		public DbSet<Photo> Photos { get; set; }
 
 		public WheelsDbContext(DbContextOptions<WheelsDbContext> options) : base(options)
 		{
