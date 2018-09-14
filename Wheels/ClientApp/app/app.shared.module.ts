@@ -1,3 +1,4 @@
+import * as Raven from 'raven-js';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';

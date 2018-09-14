@@ -22,6 +22,7 @@ export class ViewVehicleComponent implements OnInit {
 		private progressService: ProgressService,
 		private photoService: PhotoService,
 		private vehicleService: VehicleService) {
+
 		route.params.subscribe(p => {
 			this.vehicleId = +p['id'];
 			if (isNaN(this.vehicleId) || this.vehicleId <= 0) {
@@ -30,6 +31,7 @@ export class ViewVehicleComponent implements OnInit {
 			}
 		});
 	}
+
 	ngOnInit() {
 		this.photoService.getPhotos(this.vehicleId)
 			.subscribe(photos => this.photos = photos);
@@ -44,6 +46,7 @@ export class ViewVehicleComponent implements OnInit {
 					}
 				});
 	}
+
 	delete() {
 		if (confirm("Are you sure?")) {
 			this.vehicleService.delete(this.vehicle.id)
@@ -54,11 +57,8 @@ export class ViewVehicleComponent implements OnInit {
 	}
 
 	uploadPhoto() {
-		var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
-
 		this.progressService.startTracking()
 			.subscribe(progress => {
-				console.log(progress);
 				this.zone.run(() => {
 					this.progress = progress;
 				});
@@ -66,9 +66,21 @@ export class ViewVehicleComponent implements OnInit {
 				null,
 				() => { this.progress = null; });
 
-		this.photoService.upload(this.vehicleId, nativeElement.files[0])
+		var nativeElement: HTMLInputElement = this.fileInput.nativeElement;
+		var file = nativeElement.files[0];
+		nativeElement.value = '';
+		this.photoService.upload(this.vehicleId, file)
 			.subscribe(photo => {
 				this.photos.push(photo);
-			});
+			},
+				err => {
+					this.toasty.error({
+						title: 'Error',
+						msg: err.text(),
+						theme: 'bootstrap',
+						showClose: true,
+						timeout: 5000
+					});
+				});
 	}
 }
