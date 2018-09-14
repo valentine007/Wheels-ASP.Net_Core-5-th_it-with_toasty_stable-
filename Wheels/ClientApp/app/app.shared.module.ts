@@ -17,6 +17,7 @@ import { AppErrorHandler } from './app.error-handler';
 import { VehicleListComponent } from './components/vehicle-module/vehicle-list/vehicle-list';
 import { PaginationComponent } from './components/shared/pagination.component';
 import { ViewVehicleComponent } from './components/vehicle-module/view-vehicle/view-vehicle';
+import { PhotoService } from "./services/photo.service";
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -51,7 +52,8 @@ import { ViewVehicleComponent } from './components/vehicle-module/view-vehicle/v
 	],
 	providers: [
 		{ provide: ErrorHandler, useClass: AppErrorHandler },
-		VehicleService
+		VehicleService,
+		PhotoService
 	],
 })
 export class AppModuleShared {
