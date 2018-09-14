@@ -1,3 +1,4 @@
+import { Auth } from './services/auth.service';
 import * as Raven from 'raven-js';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -55,6 +56,7 @@ import { BrowserXhrWithProgress, ProgressService } from './services/progress.ser
 	providers: [
 		{ provide: ErrorHandler, useClass: AppErrorHandler },
 		{ provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+		Auth,
 		VehicleService,
 		PhotoService,
 		ProgressService
