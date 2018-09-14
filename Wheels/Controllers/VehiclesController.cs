@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,6 +28,7 @@ namespace Wheels.Controllers
 		}
 
 		[HttpPost]
+		[Authorize]
 		public async Task<IActionResult> CreateVehicle([FromBody] SaveVehicleResource vehicleResource)
 		{
 			if (!ModelState.IsValid)
@@ -46,6 +48,7 @@ namespace Wheels.Controllers
 		}
 
 		[HttpPut("{id}")]
+		[Authorize]
 		public async Task<IActionResult> UpdateVehicle(int id, [FromBody] SaveVehicleResource vehicleResource)
 		{
 			if (!ModelState.IsValid)
@@ -68,6 +71,7 @@ namespace Wheels.Controllers
 		}
 
 		[HttpDelete("{id}")]
+		[Authorize]
 		public async Task<IActionResult> DeleteVehicle(int id)
 		{
 			var vehicle = await repository.GetVehicle(id, includeRelated: false);
