@@ -37,6 +37,7 @@
     <None Remove="ClientApp\app\components\vehicle-module\vehicle-list\vehicle-list.ts" />
     <None Remove="ClientApp\app\components\vehicle-module\view-vehicle\view-vehicle.ts" />
     <None Remove="ClientApp\app\services\photo.service.ts" />
+    <None Remove="ClientApp\app\services\progress.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +47,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\vehicle-module\vehicle-list\vehicle-list.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\vehicle-module\view-vehicle\view-vehicle.ts" />
     <TypeScriptCompile Include="ClientApp\app\services\photo.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\progress.service.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
