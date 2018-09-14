@@ -20,6 +20,7 @@ import { PaginationComponent } from './components/shared/pagination.component';
 import { ViewVehicleComponent } from './components/vehicle-module/view-vehicle/view-vehicle';
 import { PhotoService } from "./services/photo.service";
 import { BrowserXhrWithProgress, ProgressService } from './services/progress.service';
+import { Auth } from './services/auth.service';
 
 @NgModule({
 	bootstrap: [AppComponent],
@@ -55,6 +56,7 @@ import { BrowserXhrWithProgress, ProgressService } from './services/progress.ser
 	providers: [
 		{ provide: ErrorHandler, useClass: AppErrorHandler },
 		{ provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+		Auth,
 		VehicleService,
 		PhotoService,
 		ProgressService
