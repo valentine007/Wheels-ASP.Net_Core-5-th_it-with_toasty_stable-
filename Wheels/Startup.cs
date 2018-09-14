@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Wheels.Persistence;
 using Wheels.Core.Models;
+using Wheels.Core;
 
 namespace Wheels
 {
@@ -28,6 +29,7 @@ namespace Wheels
         {
 			services.Configure<PhotoSettings>(Configuration.GetSection("PhotoSettings"));
 			services.AddScoped<IVehicleRepository, VehicleRepository>();
+			services.AddScoped<IPhotoRepository, PhotoRepository>();
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddAutoMapper();
 			services.AddDbContext<WheelsDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
