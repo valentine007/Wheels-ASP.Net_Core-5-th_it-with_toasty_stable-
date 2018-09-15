@@ -6,7 +6,7 @@ import Auth0Lock from 'auth0-lock';
 export class Auth {
 	profile: any;
 	// Configure Auth0
-	lock = new Auth0Lock('RfRu3un13aOO73C7X2mH41qxfHRbUc33', 'vegaproject.auth0.com', {});
+	lock = new Auth0Lock('55uUsfiKvdThKFxfnnZv33dU6s4ex5z5', 'wheelsproject.auth0.com', {});
 	constructor() {
 		this.profile = JSON.parse(localStorage.getItem('profile'));
 		// Add callback for lock `authenticated` event
